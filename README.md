@@ -21,9 +21,9 @@ Network logs show data **exfiltration (~10 MB)** to an external IP.
 4. [File Analysis](#file-analysis)
 5. [MITRE ATT&CK Mapping](#mitre-attck-mapping)
 6. [Detection & Response in ELK](#detection--response-in-elk)
-7. [Reproduction Steps](#reproduction-steps)
-8. [Summary Visuals](#summary-visuals)
-9. [License & Attribution](#license--attribution)
+7. [Reproduction Steps]
+8. [Summary Visuals]
+9. [License & Attribution]
 
 ---
 
@@ -38,7 +38,6 @@ Network logs show data **exfiltration (~10 MB)** to an external IP.
 | Malicious IPs | 5[.]252[.]153.[]241, 45[.]125[.]66[.]32, 45[.]125[.]66[.]252 |
 | Suspicious Domain | authenticatoor[.]org |
 
-![Zeek conn log](images/zeek_conn_log.png)
 
 ---
 
@@ -63,11 +62,8 @@ Network logs show data **exfiltration (~10 MB)** to an external IP.
 - Large (~10 MB) outbound traffic to 45[.]125[.]66[.]32 indicates **data exfiltration**
 
 ### Visuals
-![Zeek HTTP Log](images/zeek_http_log.png)
-![Zeek DNS Log](images/zeek_dns_log.png)
-![Wireshark HTTP Objects](images/wireshark_http_objects.png)
-![Exfil Flow Graph](images/exfil_flow_graph.png)
-![Timeline View](images/timeline_view.png)
+![Zeek HTTP Log](images/zeek_httplogs.png)
+![Wireshark HTTP Exfiltration](images/exfiltration.png)
 
 ---
 
@@ -85,9 +81,10 @@ Network logs show data **exfiltration (~10 MB)** to an external IP.
 - Exfiltration & persistence traces detected  
 
 ### Visuals
-![pas.ps1 VirusTotal](images/pas_ps1_virustotal.png)
-![29842.ps1 VirusTotal](images/29842_ps1_virustotal.png)
-![Numeric File 1517096937](images/numeric_file_1517096937.png)
+![hash of .ps1 files](images/hash.png)
+![pas.ps1 VirusTotal](images/hash_ps1_vir.png)
+![29842.ps1 VirusTotal](images/virus298.png)
+![Numeric File 1517096937](images/wireshark_http_exp.png)
 
 ---
 
@@ -102,7 +99,7 @@ Network logs show data **exfiltration (~10 MB)** to an external IP.
 | T1204 | User Execution | Execution |
 
 ### Visuals
-![PowerShell Execution](images/powershell_execution.png)
+![pas.ps1 file content](images/contents_ps1.png)
 ![MITRE Mapping Table](images/mitre_mapping_table.png)
 
 ---
@@ -150,11 +147,12 @@ cat conn.log | zeek-cut id.orig_h id.resp_h proto service duration
 cat http.log | zeek-cut id.orig_h id.resp_h method uri status_code
 
 # 4. Extract Objects in Wireshark
-File > Export Objects > HTTP
+File > Export Objects > HTTP > Save all 
 ```
-
-![Command Output](images/command_output.png)
-
+![Zeek Parse](images/zeek_parse.png)
+![Zeek conn.log](images/zeek_conn1_log.png)
+![Zeek http log](images/zeek_httplogs.png)
+![Wireshark export http objects](images/wireshark_httpps1.png)
 ---
 
 ##  Summary Visuals
