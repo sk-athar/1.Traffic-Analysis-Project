@@ -35,7 +35,7 @@ Network logs show data **exfiltration (~10 MB)** to an external IP.
 | Hostname | DESKTOP-L8C5GSJ |
 | Domain | bluemoontuesday.com |
 | Controller | WIN-GSH54QLW48D (10.1.17.2) |
-| Malicious IPs | 5[.]252[.]153.[]241, 45[.]125[.]66[.]32, 45[.]125[.]66[.]252 |
+| Malicious IPs | 5[.]252[.]153[.]241, 45[.]125[.]66[.]32, 45[.]125[.]66[.]252 |
 | Suspicious Domain | authenticatoor[.]org |
 
 
