@@ -15,15 +15,15 @@ Network logs show data **exfiltration (~10 MB)** to an external IP.
 ---
 
 ##  Table of Contents
-1. [Investigation Overview](#investigation-overview)
-2. [Key Artifacts & IOCs](#key-artifacts--iocs)
-3. [Network Analysis](#network-analysis)
-4. [File Analysis](#file-analysis)
-5. [MITRE ATT&CK Mapping](#mitre-attck-mapping)
-6. [Detection & Response in ELK](README.md-#detection--response-in-elk)
-7. [Reproduction Steps]
-8. [Summary Visuals]
-9. [License & Attribution]
+1. Investigation Overview
+2. Key Artifacts & IOCs
+3. Network Analysis
+4. File Analysis
+5. MITRE ATT&CK Mapping
+6. Detection & Response in ELK
+7. Reproduction Steps
+8. Summary Visuals
+9. License & Attribution
 
 ---
 
