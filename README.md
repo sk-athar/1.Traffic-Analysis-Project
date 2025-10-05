@@ -108,37 +108,6 @@ Image shows multiple Wireshark http object with same name "1517096937"
 
 ### Visuals
 ![MITRE Mapping Table](images/mitre_mapping_table.png)
-
----
-
-##  Detection & Response in ELK
-
-###  ElastAlert Rules
-- Detects HTTP GET to `/1517096937`
-- Detects `.ps1` downloads with PowerShell User‑Agent  
-File: [`elastalert_rules.yaml`](elastalert_rules.yaml)
-
-![ElastAlert Rule](images/elk_alert_rule.png)
-
----
-
-###  Elasticsearch Watcher
-Triggers alert on outbound > 5 MB from internal hosts  
-File: [`elasticsearch_watcher_large_exfil.json`](elasticsearch_watcher_large_exfil.json)
-
-![Watcher Config](images/elk_watcher_config.png)
-
----
-
-###  Kibana Dashboard
-Import: [`kibana_saved_objects.ndjson`](kibana_saved_objects.ndjson)  
-Suggested visualizations:
-- Top External IPs by Bytes Out  
-- HTTP Requests with Suspicious URIs  
-- PowerShell Download Trends  
-
-![Kibana Dashboard](images/kibana_dashboard.png)
-
 ---
 
 ##  Reproduction Steps
@@ -165,8 +134,6 @@ File > Export Objects > HTTP > Save all
 ![Wireshark export http objects](images/wireshark_httpps_1.png)
 ---
 
-##  Summary Visuals
-![Overall Summary](images/summary_visual.png)
 
 ---
 
