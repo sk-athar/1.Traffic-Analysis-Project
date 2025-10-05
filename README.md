@@ -63,7 +63,10 @@ Network logs show data **exfiltration (~10 MB)** to an external IP.
 
 ### Visuals
 ![Zeek HTTP Log](images/zeek_httplogs.png)
+Image shows http logs with 404 error, possible indication towards C2 activity
+
 ![Wireshark HTTP Exfiltration](images/exfiltration.png)
+Image shows ~10MB of data being exfiltrated
 
 ---
 
@@ -82,9 +85,14 @@ Network logs show data **exfiltration (~10 MB)** to an external IP.
 
 ### Visuals
 ![hash of .ps1 files](images/hash.png)
+This Image shows SHA256 hashes of both the .ps1 files
+
 ![pas.ps1 VirusTotal](images/hash_ps1_vir.png)
+Image shows matched SHA256 result of pas.ps1 file on virustotal
 ![29842.ps1 VirusTotal](images/virus298.png)
+Image shows matched SHA256 result of 29842.ps1
 ![Numeric File 1517096937](images/wireshark_http_exp.png)
+Image shows multiple Wireshark http object with same name "1517096937"
 
 ---
 
@@ -148,10 +156,13 @@ cat http.log | zeek-cut id.orig_h id.resp_h method uri status_code
 # 4. Extract Objects in Wireshark
 File > Export Objects > HTTP > Save all 
 ```
-![Zeek Parse](images/zeek_parse.png)
+![Zeek Parse](images/zeek_parse.png)   
+
 ![Zeek conn.log](images/zeek_conn1_log.png)
+
 ![Zeek http log](images/zeek_httplogs.png)
-![Wireshark export http objects](images/wireshark_httpps1.png)
+
+![Wireshark export http objects](images/wireshark_httpps_1.png)
 ---
 
 ##  Summary Visuals
