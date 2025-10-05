@@ -35,7 +35,7 @@ Network logs show data **exfiltration (~10 MB)** to an external IP.
 | Hostname | DESKTOP-L8C5GSJ |
 | Domain | bluemoontuesday.com |
 | Controller | WIN-GSH54QLW48D (10.1.17.2) |
-| Malicious IPs | 5.252.153.241, 45.125.66.32 |
+| Malicious IPs | 5[.]252[.]153.[]241, 45[.]125[.]66[.]32, 45[.]125[.]66[.]252 |
 | Suspicious Domain | authenticatoor[.]org |
 
 ![Zeek conn log](images/zeek_conn_log.png)
@@ -58,9 +58,9 @@ Network logs show data **exfiltration (~10 MB)** to an external IP.
 ##  Network Analysis
 
 **Observations:**
-- HTTP GET requests fetched obfuscated PowerShell scripts (`pas.ps1`, `29842.ps1`) from 5.252.153.241  
+- HTTP GET requests fetched obfuscated PowerShell scripts (`pas.ps1`, `29842.ps1`) from 5[.]252[.]153[.]241  
 - Numeric-path polling (`/1517096937`) suggested beaconing activity  
-- Large (~10 MB) outbound traffic to 45.125.66.32 indicates **data exfiltration**
+- Large (~10 MB) outbound traffic to 45[.]125[.]66[.]32 indicates **data exfiltration**
 
 ### Visuals
 ![Zeek HTTP Log](images/zeek_http_log.png)
