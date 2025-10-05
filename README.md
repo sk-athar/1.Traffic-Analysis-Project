@@ -99,7 +99,6 @@ Network logs show data **exfiltration (~10 MB)** to an external IP.
 | T1204 | User Execution | Execution |
 
 ### Visuals
-![pas.ps1 file content](images/contents_ps1.png)
 ![MITRE Mapping Table](images/mitre_mapping_table.png)
 
 ---
