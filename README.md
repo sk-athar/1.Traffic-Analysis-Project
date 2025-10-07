@@ -85,13 +85,19 @@ Image shows ~10MB of data being exfiltrated
 
 ### Visuals
 ![hash of .ps1 files](images/hash.png)
+
 This Image shows SHA256 hashes of both the .ps1 files
 
 ![pas.ps1 VirusTotal](images/hash_ps1_vir.png)
+
 Image shows matched SHA256 result of pas.ps1 file on virustotal
+
 ![29842.ps1 VirusTotal](images/virus298.png)
+
 Image shows matched SHA256 result of 29842.ps1
+
 ![Numeric File 1517096937](images/wireshark_http_exp.png)
+
 Image shows multiple Wireshark http object with same name "1517096937"
 
 ---
@@ -123,7 +129,11 @@ cat conn.log | zeek-cut id.orig_h id.resp_h proto service duration
 cat http.log | zeek-cut id.orig_h id.resp_h method uri status_code
 
 # 4. Extract Objects in Wireshark
-File > Export Objects > HTTP > Save all 
+File > Export Objects > HTTP > Save all
+
+#5 check hashes of files using SHA256 or MD5
+sha256sum <filename>  or
+md5shum <filename>
 ```
 ![Zeek Parse](images/zeek_parse.png)   
 
