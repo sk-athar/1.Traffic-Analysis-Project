@@ -100,9 +100,9 @@ Image shows matched SHA256 result of 29842.ps1
 
 Image shows multiple Wireshark http object with same name "1517096937"
 
-![Contents of "pas.ps1" file viewd on Cyberchef](images/content_ps1.png)
+![Contents of "pas.ps1" file viewd on Cyberchef](images/contents_ps1.png)
 
-This image shows the content of the file `pas.ps1`
+This image shows the content of the file `pas.ps1`; viewed on Cyberchef
 
 ---
 
