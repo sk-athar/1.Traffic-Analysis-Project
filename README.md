@@ -32,7 +32,7 @@ Artifacts confirm staged payload delivery and exfiltration via encoded HTTP sess
 | Field | Details |
 |-------|----------|
 | Victim Host | 10.1.17.215 |
-| Hostname | DESKTOP-L8C5GSJ |
+| Victim Hostname | DESKTOP-L8C5GSJ |
 | Domain | bluemoontuesday.com |
 | Controller | WIN-GSH54QLW48D (10.1.17.2) |
 | Malicious IPs | 5[.]252[.]153[.]241, 45[.]125[.]66[.]32 – 45[.]125[.]66[.]252 |
@@ -42,30 +42,37 @@ Artifacts confirm staged payload delivery and exfiltration via encoded HTTP sess
 
 ## Key Artifacts & IOCs
 
-| Type | Value | Description |
-|------|--------|-------------|
-| Filename | pas.ps1 | PowerShell loader script |
-| Filename | 29842.ps1 | Stage 2 PowerShell payload |
-| Filename | 1517096937(464) | Numeric C2 beacon file |
-| SHA256 | b8ce40900788ea26b9e4c9af7efab533e8d39ed1370da09b93fcf72a16750ded | 29842.ps1 |
-| SHA256 | a833f27c2bb4cad31344e70386c44b5c221f031d7cd2f2a6b8601919e790161e | pas.ps1 |
-| SHA256 | d63f0163a727b8bc2abe6d35b56468c5ac048b15c63c3faeba1dca054c3704bc | 1517096937(464) |
+| Type | Indicator | Notes |
+|------|-----------|-------|
+| Victim IP | `10.1.17.215` | Observed as HTTP client in Zeek conn/http logs |
+| Hostname | `DESKTOP-L8C5GSJ` | Reported in capture metadata (if available) |
+| Domain | `authenticatoor[.]org` | Suspicious domain observed in HTTP requests |
+| Domain | `google-authenticator[.]burleson-appliance[.]net` | Ancillary domain observed in session |
+| Malicious IP | `5[.]252[.]153[.]241` | Host serving `.ps1` artifacts |
+| Malicious IP | `45[.]125[.]66[.]32, 45[.]125[.]66[.]252` | Destination for large outbound transfer (~10 MB) |
+| Malicious IP Range | `45[.]125[.]66[.]0/24` | Multiple addresses observed in same /24 during sessions |
+| Filenames (HTTP objects) | `pas.ps1`, `29842.ps1`, `1517096937(464)`, `264872` | Retrieved via HTTP object extraction |
+| SHA256 | `a833f27c2bb4cad31344e70386c44b5c221f031d7cd2f2a6b8601919e790161e` | `pas.ps1` (as observed in HTTP object) |
+| SHA256 | `b8ce40900788ea26b9e4c9af7efab533e8d39ed1370da09b93fcf72a16750ded` | `29842.ps1` |
+| SHA256 | `d63f0163a727b8bc2abe6d35b56468c5ac048b15c63c3faeba1dca054c3704bc` | `1517096937(464)` |
+
+**Immediate Action:** Add these IOCs to your SIEM, block domains/IPs at the edge, and add file hashes to your file-monitoring lists.
 
 ---
 
 ## Event Timeline
 
-| Packet No. | Time (s) | Event Details |
-|-------------|----------|----------------|
-| 2330 | 38.269838 | User accessed google-authenticator[.]burleson-appliance[.]net |
-| 2332 | 38.299460 | TCP payload (1006 bytes) |
-| 2364 | 38.863141 | First contact with 5[.]252[.]153[.]241 / authenticatoor[.]org |
-| 5028 | 60.135270 | File "264872" downloaded |
-| 5063 | 62.145732 | File "29842.ps1" downloaded |
-| 5073 | 62.366091 | File "1517096937" downloaded |
-| 13671 | 128.984576 | File "pas.ps1" downloaded |
-| 19302 | 889.561525 | First contact with 45[.]125[.]66[.]32 |
-| 22750–22928 | 903–907 | Data exfiltration (~10 MB) to 45[.]125[.]66[.]32 |
+| Packet No. | Time (s) | Event |
+|------------:|---------:|------|
+| 2330 | 38.269838 | Client accessed `google-authenticator[.]burleson-appliance[.]net` (HTTP Host seen) |
+| 2332 | 38.299460 | TCP payload (1006 bytes) — initial data exchange |
+| 2364 | 38.863141 | First contact with `5[.]252[.]153[.]241` (served fake website content/`authenticatoor[.]org`) |
+| 5028 | 60.135270 | HTTP object `264872` downloaded by victim |
+| 5063 | 62.145732 | HTTP object `29842.ps1` downloaded |
+| 5073 | 62.366091 | HTTP object `1517096937` downloaded |
+| 13671 | 128.984576 | HTTP object `pas.ps1` downloaded |
+| 19302 | 889.561525 | First contact with `45[.]125[.]66[.]32` |
+| 22750–22928 | 903–907 | Bulk outbound transfer (~10 MB) to `45[.]125[.]66[.]32` |
 
 ---
 
@@ -93,7 +100,7 @@ Artifacts confirm staged payload delivery and exfiltration via encoded HTTP sess
 - `29842.ps1` — Stage 2 payload  
 - `1517096937(464)` — Numeric beacon file  
 
-### Sandbox Findings
+### Findings
 - All `.ps1` files flagged as malicious on VirusTotal / Any.Run  
 - Techniques observed:  
   - PowerShell execution (T1059.001)  
@@ -120,6 +127,16 @@ Artifacts confirm staged payload delivery and exfiltration via encoded HTTP sess
 
 ---
 
+## Behavioral Analysis
+
+Because only a PCAP was available, the behavioral analysis is limited to on-wire activity. The following behaviors were observed or inferred from the traffic:
+- **Staged download:** Multiple HTTP GETs returned PowerShell scripts (`pas.ps1`, `29842.ps1`) — consistent with downloader stages.  
+- **Beaconing:** Repeated numeric resource requests (e.g., `/1517096937`) consistent with periodic C2 polling. Frequency and jitter should be measured to tune detection rules.  
+- **Data exfiltration:** A ~10 MB outbound transfer to `45[.]125[.]66[.]32`. The content type and HTTP methods should be inspected to classify the exfiltration channel (POST with attachment, chunked transfer, or HTTP PUT).  
+- **Possible obfuscation:** PowerShell scripts observed on the wire were encoded/obfuscated; recommend saving and running through CyberChef or a sandbox for decoding when safe.
+
+---
+
 ## MITRE ATT&CK Mapping
 
 | Technique ID | Technique | Tactic | Description |
@@ -130,7 +147,6 @@ Artifacts confirm staged payload delivery and exfiltration via encoded HTTP sess
 | T1189 | Drive-by Compromise | Initial Access | Adversaries may gain access to a system through a user visiting a website over the normal course of browsing. |
 | T1204 | User Execution | Execution | An adversary may rely upon specific actions by a user in order to gain execution. Users may be subjected to social engineering to get them to execute malicious code by, for example, opening a malicious document file or link.  |
 
-![MITRE Mapping Table](images/mitre_mapping_table.png)
 
 ---
 
@@ -192,6 +208,27 @@ cat notice.log | jq -r '. | "\n=== ALERT: \(.note) ===\nTime: \(.ts)\nMessage: \
 *Zeek notice.log with IOC alerts.*
 
 ---
+
+## Answers to orignal questions posted by the author with pcap file
+1. What is the IP address of the infected Windows client? :- 10[.]1[.]17[.]215
+2. What is the mac address of the infected Windows client? :- 00[:]d0[:]b7[:]26[:]4a[:]74
+3. What is the host name of the infected Windows client? :- DESKTOP-L8C5GSJ
+4. What is the user account name from the infected Windows client? :- shutchenson
+5. What is the likely domain name for the fake Google Authenticator page? :- authenticatoor[.]org
+6. What are the IP addresses used for C2 servers for this infection? :- 5[.]252[.]153[.]241 , 45[.]125[.]66[.]32, 45[.]125[.]66[.]252
+
+---
+
+## Conclusion & Recommendations
+
+1. **Containment:** Block `authenticatoor[.]org`, `5.252.153.241`, `45.125.66.32` at perimeter firewalls and proxy.  
+2. **Eradication:** If host access is available, isolate `10.1.17.215`, collect memory and disk images, and remove malicious artifacts.  
+3. **Recovery:** Re-image affected hosts if persistence is confirmed or if remediation steps cannot reliably remove the foothold.  
+4. **Detection:** Deploy the Zeek notice script; tune for false positives. Add SHA256s to endpoint detection lists.  
+5. **Hunt:** Perform lateral movement hunts using EDR telemetry for similar PowerShell command patterns and connections to the `/1517096937`-style numeric URIs.  
+6. **Post-incident:** Perform a full user awareness and password reset for impacted accounts that may have been exfiltrated.
+
+----
 
 ## License & Attribution
 
