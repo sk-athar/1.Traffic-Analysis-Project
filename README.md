@@ -23,8 +23,10 @@ Artifacts confirm staged payload delivery and exfiltration via encoded HTTP sess
 6. [Behavioral Analysis](#behavioral-analysis)
 7. [MITRE ATT&CK Mapping](#mitre-attck-mapping)  
 8. [ELK Dashboards](#elk-dashboards)  
-9. [Reproduction Steps](#reproduction-steps)  
-10. [License & Attribution](#license--attribution)
+9. [Reproduction Steps](#reproduction-steps)
+10. [Answers to orignal questions](#answers-to-orignal-questions-posted-by-the-author-with-pcap-file)
+11. [Conclusion & Recommendations](#conclusion-&-recommendations)
+12. [License & Attribution](#license--attribution)
 
 ---
 
