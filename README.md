@@ -17,13 +17,14 @@ Network logs show data **exfiltration (~10 MB)** to an external IP.
 ##  Table of Contents
 1. Investigation Overview
 2. Key Artifacts & IOCs
-3. Network Analysis
-4. File Analysis
-5. MITRE ATT&CK Mapping
-6. Detection & Response in ELK
-7. Reproduction Steps
-8. Summary Visuals
-9. License & Attribution
+3. Event Timeline
+4. Network Analysis
+5. File Analysis
+6. MITRE ATT&CK Mapping
+7. Detection & Response in ELK
+8. Reproduction Steps
+9. Summary Visuals
+10. License & Attribution
 
 ---
 
@@ -51,6 +52,22 @@ Network logs show data **exfiltration (~10 MB)** to an external IP.
 | SHA256 | b8ce40900788ea26b9e4c9af7efab533e8d39ed1370da09b93fcf72a16750ded | 29842.ps1 |
 | SHA256 | a833f27c2bb4cad31344e70386c44b5c221f031d7cd2f2a6b8601919e790161e | pas.ps1 |
 | SHA256 | d63f0163a727b8bc2abe6d35b56468c5ac048b15c63c3faeba1dca054c3704bc | 1517096937(464) |
+
+---
+
+## Event Timeline 
+
+| Packet No. | Time | Information |
+|--------------|--------------------|---------------------|
+| 2330 | 38.269838 | User accessed site (google-authenticator[.]burleson-appliance[.]net) |
+| 2332 | 38.299460 | TCP Payload (1006 bytes) |
+| 2364 | 38.863141 | First contact with 5[.]252[.]241 / authenticatoor[.]org (fake website) |
+| 5028 | 60.135270 | File "264872" downloaded on victim device |
+| 5063 | 62.145732 | File "29842.ps1" downloaded on victim device |
+| 5073 | 62.366091 | Plain text file "1516096937" downloaded on victim device |
+| 13671 | 128.984576 | File "pas.ps1" downloaded on victim device |
+| 19302 |  889.561525 | First contact with 45[.]125[.]66[.]32 |
+|22750 - 22928 | 903 - 907 | Data Exfiltration ~10MB to 45[.]125[.]66[.]32 |
 
 ---
 
@@ -120,6 +137,13 @@ This image shows the content of the file `pas.ps1`; viewed on Cyberchef
 ![MITRE Mapping Table](images/mitre_mapping_table.png)
 ---
 
+## Detection and Response in ELK
+
+Create a pipleline to ingest logs into Kibana (preferred format is json and easy to handle)
+
+
+---
+
 ##  Reproduction Steps
 
 ```bash
@@ -165,6 +189,9 @@ cat notice.log | jq -r '. | "\n=== ALERT: \(.note) ===\nTime: \(.ts)\nMessage: \
 this will end cup creating a notice.log file which will contain all alerts for the IOCs encountered
 
 ---
+
+
+
 
 ##  License & Attribution
 
