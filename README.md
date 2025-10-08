@@ -3,6 +3,7 @@
 **Analyst:** SOC Analyst (Student Project)  
 **Category:** Network Forensics & Malware Traffic Analysis  
 **Tools Used:** Zeek, Wireshark, CyberChef, VirusTotal, ELK Stack  
+*This analysis is based solely on network evidence; no endpoint forensics were available to confirm payload execution or persistence mechanisms.*
 
 ---
 
@@ -15,31 +16,18 @@ Artifacts confirm staged payload delivery and exfiltration via encoded HTTP sess
 ---
 
 ## Table of Contents
-1. [Investigation Overview](#investigation-overview)  
-2. [Key Artifacts & IOCs](#key-artifacts--iocs)  
-3. [Event Timeline](#event-timeline)  
-4. [Network Analysis](#network-analysis)  
-5. [File Analysis](#file-analysis)
-6. [Behavioral Analysis](#behavioral-analysis)
-7. [MITRE ATT&CK Mapping](#mitre-attck-mapping)
-8. [Immediate Response](#immediate-response)
-9. [ELK Dashboards](#elk-dashboards)  
-10. [Reproduction Steps](#reproduction-steps)
-11. [Answers to orignal questions](#answers-to-orignal-questions-posted-by-the-author-with-pcap-file)
-12. [License & Attribution](#license--attribution)
 
----
-
-## Investigation Overview
-
-| Field | Details |
-|-------|----------|
-| Victim IP | 10[.]1[.]17[.]215 |
-| Victim Hostname | DESKTOP-L8C5GSJ |
-| Domain | bluemoontuesday.com |
-| Controller | WIN-GSH54QLW48D (10[.]1[.]17[.]2) |
-| Malicious IPs | 5[.]252[.]153[.]241, 45[.]125[.]66[.]32 – 45[.]125[.]66[.]252 |
-| Suspicious Domain | authenticatoor[.]org |
+1. [Key Artifacts & IOCs](#key-artifacts--iocs)  
+2. [Event Timeline](#event-timeline)  
+3. [Network Analysis](#network-analysis)  
+4. [File Analysis](#file-analysis)
+5. [Behavioral Analysis](#behavioral-analysis)
+6. [MITRE ATT&CK Mapping](#mitre-attck-mapping)
+7. [Immediate Response](#immediate-response)
+8. [ELK Dashboards](#elk-dashboards)  
+9. [Reproduction Steps](#reproduction-steps)
+10. [Answers to orignal questions](#answers-to-orignal-questions-posted-by-the-author-with-pcap-file)
+11. [License & Attribution](#license--attribution)
 
 ---
 
@@ -48,11 +36,11 @@ Artifacts confirm staged payload delivery and exfiltration via encoded HTTP sess
 | Type | Indicator | Notes |
 |------|-----------|-------|
 | Victim IP | `10.1.17.215` | Observed as HTTP client in Zeek conn/http logs |
-| Hostname | `DESKTOP-L8C5GSJ` | Reported in capture metadata (if available) |
+| Hostname | `DESKTOP-L8C5GSJ` | Reported in capture metadata |
 | Domain | `authenticatoor[.]org` | Suspicious domain observed in HTTP requests |
 | Domain | `google-authenticator[.]burleson-appliance[.]net` | Ancillary domain observed in session |
 | Malicious IP | `5[.]252[.]153[.]241` | Host serving `.ps1` artifacts |
-| Malicious IP | `45[.]125[.]66[.]32, 45[.]125[.]66[.]252` | Destination for large outbound transfer (~10 MB) |
+| Malicious IP | `45[.]125[.]66[.]32` | Destination for large outbound transfer (~10 MB) |
 | Malicious IP Range | `45[.]125[.]66[.]0/24` | Multiple addresses observed in same /24 during sessions |
 | Filenames (HTTP objects) | `pas.ps1`, `29842.ps1`, `1517096937(464)`, `264872` | Retrieved via HTTP object extraction |
 | SHA256 | `a833f27c2bb4cad31344e70386c44b5c221f031d7cd2f2a6b8601919e790161e` | `pas.ps1` (as observed in HTTP object) |
@@ -195,7 +183,7 @@ File > Export Objects > HTTP > Save all (or select artifacts)
 sha256sum <filename>
 md5sum <filename>
 
-note: most of the analysis was done on wireshark
+# note: most of the analysis was done on wireshark
 ```
 
 ![Zeek Parse](images/zeek_parse.png)  
@@ -212,6 +200,7 @@ IOC detection rule: [ioc-detection.zeek](https://github.com/sk-athar/Malware-Ana
 ```bash
 # Generate Zeek logs and alert file
 zeek -C -r malware-analysis-exercise.pcap ioc-detection.zeek
+# note ioc-detection.zeek creates logs in JSON format
 
 # Review notice.log (JSON format)
 cat notice.log | jq -r '. | "\n=== ALERT: \(.note) ===\nTime: \(.ts)\nMessage: \(.msg)\nDetails: \(.sub // "N/A")\nSource: \(.["id.orig_h"] // "N/A") -> Dest: \(.["id.resp_h"] // "N/A")\n"'
