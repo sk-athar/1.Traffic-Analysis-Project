@@ -21,11 +21,11 @@ Artifacts confirm staged payload delivery and exfiltration via encoded HTTP sess
 4. [Network Analysis](#network-analysis)  
 5. [File Analysis](#file-analysis)
 6. [Behavioral Analysis](#behavioral-analysis)
-7. [MITRE ATT&CK Mapping](#mitre-attck-mapping)  
-8. [ELK Dashboards](#elk-dashboards)  
-9. [Reproduction Steps](#reproduction-steps)
-10. [Answers to orignal questions](#answers-to-orignal-questions-posted-by-the-author-with-pcap-file)
-11. [Response](#response)
+7. [MITRE ATT&CK Mapping](#mitre-attck-mapping)
+8. [Immediate Response](#immediate-response)
+9. [ELK Dashboards](#elk-dashboards)  
+10. [Reproduction Steps](#reproduction-steps)
+11. [Answers to orignal questions](#answers-to-orignal-questions-posted-by-the-author-with-pcap-file)
 12. [License & Attribution](#license--attribution)
 
 ---
@@ -153,6 +153,16 @@ Because only a PCAP was available, the behavioral analysis is limited to on-wire
 
 ---
 
+## Immediate Response
+
+1. **Containment:** Block `authenticatoor[.]org`, `5.252.153.241`, `45.125.66.32` at perimeter firewalls and proxy.  
+2. **Eradication:** If host access is available, isolate `10.1.17.215`, collect memory and disk images, and remove malicious artifacts present on the device.  
+3. **Recovery:** Re-image affected hosts if persistence is confirmed or if remediation steps cannot reliably remove the foothold.  
+4. **Detection:** Deploy the Zeek notice script; tune for false positives. Add SHA256s to endpoint detection lists.  
+5. **Post-incident:** Perform a full user awareness and password reset for impacted accounts that may have been exfiltrated.
+
+---
+
 ## ELK Dashboards
 
 A custom ELK pipeline was created to ingest JSON logs for IOC visualization.  
@@ -223,16 +233,6 @@ cat notice.log | jq -r '. | "\n=== ALERT: \(.note) ===\nTime: \(.ts)\nMessage: \
 6. What are the IP addresses used for C2 servers for this infection? :- 5[.]252[.]153[.]241 , 45[.]125[.]66[.]32, 45[.]125[.]66[.]252
 
 ---
-
-## Response
-
-1. **Containment:** Block `authenticatoor[.]org`, `5.252.153.241`, `45.125.66.32` at perimeter firewalls and proxy.  
-2. **Eradication:** If host access is available, isolate `10.1.17.215`, collect memory and disk images, and remove malicious artifacts present on the device.  
-3. **Recovery:** Re-image affected hosts if persistence is confirmed or if remediation steps cannot reliably remove the foothold.  
-4. **Detection:** Deploy the Zeek notice script; tune for false positives. Add SHA256s to endpoint detection lists.  
-5. **Post-incident:** Perform a full user awareness and password reset for impacted accounts that may have been exfiltrated.
-
-----
 
 ## License & Attribution
 
