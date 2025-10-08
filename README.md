@@ -226,7 +226,7 @@ cat notice.log | jq -r '. | "\n=== ALERT: \(.note) ===\nTime: \(.ts)\nMessage: \
 ## License & Attribution
 
 **License:** MIT  
-**Author:** SOC Analyst (Student Project)  
+**Author:** Shaikh Athar Ahmed (SOC Analyst:Student Project)  
 **Dataset:** [malware-traffic-analysis.net (2025-01-22)](https://www.malware-traffic-analysis.net/2025/01/22/index.html)
 
 ---
