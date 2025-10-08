@@ -48,10 +48,10 @@ Network logs show data **exfiltration (~10 MB)** to an external IP.
 | Filename | pas.ps1 | PowerShell loader script |
 | Filename | 29842.ps1 | Secondary PowerShell payload |
 | Filename | 1517096937(464) | Numeric C2 file |
-| SHA256 | b8ce40900788ea26b9e4c9af7efab533e8d39ed1370da09b93fcf72a16750ded | 29842.ps1 |
-| SHA256 | a833f27c2bb4cad31344e70386c44b5c221f031d7cd2f2a6b8601919e790161e | pas.ps1 |
+| SHA256 | a833f27c2bb4cad31344e70386c44b5c221f031d7cd2f2a6b8601919e790161e| pas.ps1 |
+| SHA256 | b8ce40900788ea26b9e4c9af7efab533e8d39ed1370da09b93fcf72a16750ded  | 29842.ps1 |
 | SHA256 | d63f0163a727b8bc2abe6d35b56468c5ac048b15c63c3faeba1dca054c3704bc | 1517096937(464) |
-
+ 
 ---
 
 ## Event Timeline 
