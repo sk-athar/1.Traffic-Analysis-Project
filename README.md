@@ -133,11 +133,11 @@ cat conn.log | zeek-cut id.orig_h id.resp_h proto service duration
 cat http.log | zeek-cut id.orig_h id.resp_h method uri status_code
 
 # 4. Extract Objects in Wireshark
-File > Export Objects > HTTP > Save all
+File > Export Objects > HTTP > Save all or save only the artifact needed
 
 #5 check hashes of files using SHA256 or MD5
 sha256sum <filename>  or
-md5shum <filename>
+md5sum <filename>
 ```
 ![Zeek Parse](images/zeek_parse.png)   
 
@@ -146,8 +146,22 @@ md5shum <filename>
 ![Zeek http log](images/zeek_httplogs.png)
 
 ![Wireshark export http objects](images/wireshark_httpps_1.png)
----
 
+
+Zeek IOC Detection ioc-detection.zeek can be found in zeek-rules
+run this with the pcap file 
+```bash
+#to generate logs and notice.log 
+zeek -C -r 2025-01-22-traffic-analysis-exercise.pcap ioc-detection.zeek
+
+#to check the notice log
+cat notice.log | jq -r '. | "\n=== ALERT: \(.note) ===\nTime: \(.ts)\nMessage: \(.msg)\nDetails: \(.sub // "N/A")\nSource: \(.["id.orig_h"] // "N/A") -> Dest: \(.["id.resp_h"] // "N/A")\n"'
+
+#note this is in json format easy to ingest into ELK stack or Splunk to generate dashboards
+
+```
+this will end cup creating a notice.log file which will contain all alerts for the IOCs encountered
+![notice_log](images/ioc_detected.png)
 
 ---
 
