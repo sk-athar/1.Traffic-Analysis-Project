@@ -152,7 +152,7 @@ Zeek IOC Detection ioc-detection.zeek can be found in zeek-rules
 run this with the pcap file 
 ```bash
 #to generate logs and notice.log 
-zeek -C -r 2025-01-22-traffic-analysis-exercise.pcap ioc-detection.zeek
+zeek -C -r malware-analysis-exercise.pcap ioc-detection.zeek
 
 #to check the notice log
 cat notice.log | jq -r '. | "\n=== ALERT: \(.note) ===\nTime: \(.ts)\nMessage: \(.msg)\nDetails: \(.sub // "N/A")\nSource: \(.["id.orig_h"] // "N/A") -> Dest: \(.["id.resp_h"] // "N/A")\n"'
