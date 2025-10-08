@@ -1,4 +1,4 @@
-# Malware Analysis Report — Fake Software Download Site
+# Traffic Analysis Report — Fake Software Download Site
 
 **Analyst:** SOC Analyst (Student Project)  
 **Category:** Network Forensics & Malware Traffic Analysis  
