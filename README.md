@@ -120,10 +120,10 @@ Artifacts confirm staged payload delivery and exfiltration via encoded HTTP sess
 
 ## Behavioral Analysis
 
-Because only a PCAP was available, the behavioral analysis is limited to on-wire activity. The following behaviors were observed or inferred from the traffic:
+Because only a PCAP was available, the behavioral analysis is limited to on-wire activity. The following behaviors were observed from the traffic:
 - **Staged download:** Multiple HTTP GETs returned PowerShell scripts (`pas.ps1`, `29842.ps1`) — consistent with downloader stages.  
-- **Beaconing:** Repeated numeric resource requests (e.g., `/1517096937`) consistent with periodic C2 polling. Frequency and jitter should be measured to tune detection rules.  
-- **Data exfiltration:** A ~10 MB outbound transfer to `45[.]125[.]66[.]32`. The content type and HTTP methods should be inspected to classify the exfiltration channel (POST with attachment, chunked transfer, or HTTP PUT).  
+- **Beaconing:** Repeated numeric resource requests (e.g., `/1517096937`) consistent with periodic C2 polling.  
+- **Data exfiltration:** A ~10 MB outbound transfer to `45[.]125[.]66[.]32`. The content type and HTTP methods should be inspected to classify the exfiltration channel
 - **Possible obfuscation:** PowerShell scripts observed on the wire were encoded/obfuscated; recommend saving and running through CyberChef or a sandbox for decoding when safe.
 
 ---
@@ -143,11 +143,11 @@ Because only a PCAP was available, the behavioral analysis is limited to on-wire
 
 ## Immediate Response
 
-1. **Containment:** Block `authenticatoor[.]org`, `5.252.153.241`, `45.125.66.32` at perimeter firewalls and proxy.  
-2. **Eradication:** If host access is available, isolate `10.1.17.215`, collect memory and disk images, and remove malicious artifacts present on the device.  
+1. **Containment:** Block `authenticatoor[.]org`, `5[.]252[.]153[.]241`, `45[.]125[.]66[.]0/24` at perimeter firewalls and proxy.  
+2. **Eradication:** If host access is available, isolate `10[.]1[.]17[.]215`, collect memory and disk images and remove malicious artifacts present on the device.  
 3. **Recovery:** Re-image affected hosts if persistence is confirmed or if remediation steps cannot reliably remove the foothold.  
 4. **Detection:** Deploy the Zeek notice script; tune for false positives. Add SHA256s to endpoint detection lists.  
-5. **Post-incident:** Perform a full user awareness and password reset for impacted accounts that may have been exfiltrated.
+5. **Post-incident:** Perform a full user awareness and password reset for impacted accounts/devices that may have been exfiltrated.
 
 ---
 
@@ -209,7 +209,7 @@ cat notice.log | jq -r '. | "\n=== ALERT: \(.note) ===\nTime: \(.ts)\nMessage: \
 *JSON format is ingestion-ready for ELK or Splunk dashboards.*
 
 ![Notice Log](images/ioc_detected.png)  
-*Zeek notice.log with IOC alerts.*
+*Zeek notice.log with IOC alerts. Full alerts can be found in zeek-rules*
 
 ---
 
