@@ -21,7 +21,7 @@ Network logs show data **exfiltration (~10 MB)** to an external IP.
 4. Network Analysis
 5. File Analysis
 6. MITRE ATT&CK Mapping
-7. Detection & Response in ELK
+7. ELK Dashboard
 8. Reproduction Steps
 9. License & Attribution
 
