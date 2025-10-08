@@ -160,8 +160,9 @@ cat notice.log | jq -r '. | "\n=== ALERT: \(.note) ===\nTime: \(.ts)\nMessage: \
 #note this is in json format easy to ingest into ELK stack or Splunk to generate dashboards
 
 ```
-this will end cup creating a notice.log file which will contain all alerts for the IOCs encountered
+
 ![notice_log](images/ioc_detected.png)
+this will end cup creating a notice.log file which will contain all alerts for the IOCs encountered
 
 ---
 
