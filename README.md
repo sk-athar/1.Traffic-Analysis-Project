@@ -139,7 +139,7 @@ This image shows the content of the file `pas.ps1`; viewed on Cyberchef
 ## ELK Dashboards
 
 Create a pipleline to ingest logs into Kibana (preferred format is json and easy to handle)
-Find my ndjson file for Kibana Dashboard ![Here](ELK/Malware_Analysis_IOC.ndjson)
+Find my ndjson file for Kibana Dashboard [Here](https://github.com/sk-athar/Malware-Analysis-Project/blob/main/ELK/Malware_Analysis_IOC.ndjson)
 
 
 ---
