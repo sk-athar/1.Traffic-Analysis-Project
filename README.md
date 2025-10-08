@@ -122,13 +122,13 @@ Artifacts confirm staged payload delivery and exfiltration via encoded HTTP sess
 
 ## MITRE ATT&CK Mapping
 
-| Technique ID | Technique | Tactic |
-|---------------|------------|---------|
-| T1059.001 | PowerShell (Command Interpreter) | Execution |
-| T1071.001 | Web Protocols (C2 over HTTP) | Command & Control |
-| T1041 | Exfiltration Over C2 Channel | Exfiltration |
-| T1189 | Drive-by Compromise | Initial Access |
-| T1204 | User Execution | Execution |
+| Technique ID | Technique | Tactic | Description |
+|---------------|------------|---------|------------|
+| T1059.001 | PowerShell (Command Interpreter) | Execution | Adversaries may abuse PowerShell commands and scripts for execution.PowerShell may also be used to download and run executables from the Internet, which can be executed from disk or in memory without touching disk. |
+| T1071.001 | Web Protocols (C2 over HTTP) | Command & Control | Adversaries may communicate using application layer protocols associated with web traffic to avoid detection/network filtering by blending in with existing traffic. Commands to the remote system, and often the results of those commands, will be embedded within the protocol traffic between the client and server. |
+| T1041 | Exfiltration Over C2 Channel | Exfiltration | Adversaries may steal data by exfiltrating it over an existing command and control channel. Stolen data is encoded into the normal communications channel using the same protocol as command and control communications. |
+| T1189 | Drive-by Compromise | Initial Access | Adversaries may gain access to a system through a user visiting a website over the normal course of browsing. |
+| T1204 | User Execution | Execution | An adversary may rely upon specific actions by a user in order to gain execution. Users may be subjected to social engineering to get them to execute malicious code by, for example, opening a malicious document file or link.  |
 
 ![MITRE Mapping Table](images/mitre_mapping_table.png)
 
