@@ -25,7 +25,7 @@ Artifacts confirm staged payload delivery and exfiltration via encoded HTTP sess
 8. [ELK Dashboards](#elk-dashboards)  
 9. [Reproduction Steps](#reproduction-steps)
 10. [Answers to orignal questions](#answers-to-orignal-questions-posted-by-the-author-with-pcap-file)
-11. [Conclusion & Recommendations](#conclusion-&-recommendations)
+11. [Response](#response)
 12. [License & Attribution](#license--attribution)
 
 ---
@@ -34,10 +34,10 @@ Artifacts confirm staged payload delivery and exfiltration via encoded HTTP sess
 
 | Field | Details |
 |-------|----------|
-| Victim Host | 10.1.17.215 |
+| Victim Host | 10[.]1[.]17[.]215 |
 | Victim Hostname | DESKTOP-L8C5GSJ |
 | Domain | bluemoontuesday.com |
-| Controller | WIN-GSH54QLW48D (10.1.17.2) |
+| Controller | WIN-GSH54QLW48D (10[.]1[.]17[.]2) |
 | Malicious IPs | 5[.]252[.]153[.]241, 45[.]125[.]66[.]32 – 45[.]125[.]66[.]252 |
 | Suspicious Domain | authenticatoor[.]org |
 
@@ -59,7 +59,7 @@ Artifacts confirm staged payload delivery and exfiltration via encoded HTTP sess
 | SHA256 | `b8ce40900788ea26b9e4c9af7efab533e8d39ed1370da09b93fcf72a16750ded` | `29842.ps1` |
 | SHA256 | `d63f0163a727b8bc2abe6d35b56468c5ac048b15c63c3faeba1dca054c3704bc` | `1517096937(464)` |
 
-**Immediate Action:** Add these IOCs to your SIEM, block domains/IPs at the edge, and add file hashes to your file-monitoring lists.
+**Immediate Action:** Add these IOCs to SIEM, block domains/IPs at the edge, and add file hashes to file-monitoring lists.
 
 ---
 
@@ -184,6 +184,8 @@ File > Export Objects > HTTP > Save all (or select artifacts)
 # 5. Verify hashes
 sha256sum <filename>
 md5sum <filename>
+
+note: most of the analysis was done on wireshark
 ```
 
 ![Zeek Parse](images/zeek_parse.png)  
@@ -222,14 +224,13 @@ cat notice.log | jq -r '. | "\n=== ALERT: \(.note) ===\nTime: \(.ts)\nMessage: \
 
 ---
 
-## Conclusion & Recommendations
+## Response
 
 1. **Containment:** Block `authenticatoor[.]org`, `5.252.153.241`, `45.125.66.32` at perimeter firewalls and proxy.  
-2. **Eradication:** If host access is available, isolate `10.1.17.215`, collect memory and disk images, and remove malicious artifacts.  
+2. **Eradication:** If host access is available, isolate `10.1.17.215`, collect memory and disk images, and remove malicious artifacts present on the device.  
 3. **Recovery:** Re-image affected hosts if persistence is confirmed or if remediation steps cannot reliably remove the foothold.  
 4. **Detection:** Deploy the Zeek notice script; tune for false positives. Add SHA256s to endpoint detection lists.  
-5. **Hunt:** Perform lateral movement hunts using EDR telemetry for similar PowerShell command patterns and connections to the `/1517096937`-style numeric URIs.  
-6. **Post-incident:** Perform a full user awareness and password reset for impacted accounts that may have been exfiltrated.
+5. **Post-incident:** Perform a full user awareness and password reset for impacted accounts that may have been exfiltrated.
 
 ----
 
