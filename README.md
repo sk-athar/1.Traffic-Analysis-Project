@@ -136,9 +136,10 @@ This image shows the content of the file `pas.ps1`; viewed on Cyberchef
 ![MITRE Mapping Table](images/mitre_mapping_table.png)
 ---
 
-## Detection and Response in ELK
+## ELK Dashboards
 
 Create a pipleline to ingest logs into Kibana (preferred format is json and easy to handle)
+Find my ndjson file for Kibana Dashboard ![Here](ELK/Malware_Analysis_IOC.ndjson)
 
 
 ---
