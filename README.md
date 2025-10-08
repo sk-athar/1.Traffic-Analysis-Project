@@ -139,6 +139,12 @@ Artifacts confirm staged payload delivery and exfiltration via encoded HTTP sess
 A custom ELK pipeline was created to ingest JSON logs for IOC visualization.  
 You can find the Kibana NDJSON dashboard file here: [Malware_Analysis_IOC.ndjson](https://github.com/sk-athar/Malware-Analysis-Project/blob/main/ELK/Malware_Analysis_IOC.ndjson)
 
+Dashboard Visuals
+![ELK Dashboard showing unique IOCs, Victim Activity and IOC Alert Timeline](ELK/ELK1.png)
+![ELK Dashboard showing Alert type distributions, Malicious IPs contacted, Powershell Downloads, Data Exfiltration Events](ELK/ELK2.png)
+![ELK Dashboard showing HTTP Requests made by Victim to Various IP/Domains](ELK/ELK3.png)
+![ELK Dashboard Showing Heatmap for Alerts](ELK/ELK4.png)
+
 ---
 
 ## Reproduction Steps
