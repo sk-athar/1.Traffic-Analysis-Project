@@ -31,9 +31,9 @@ export {
 
 # Define malicious IPs
 global malicious_ips: set[addr] = {
-    5.252.153.241,      # Malicious payload server
-    45.125.66.32,       # Exfiltration server
-    45.125.66.252,      # Additional suspicious IP in range
+    5.252.153.241,
+    45.125.66.32,    
+    45.125.66.252,
 };
 
 # Define malicious file hashes (MD5)
