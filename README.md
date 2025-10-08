@@ -35,7 +35,7 @@ Artifacts confirm staged payload delivery and exfiltration via encoded HTTP sess
 
 | Type | Indicator | Notes |
 |------|-----------|-------|
-| Victim IP | `10.1.17.215` | Observed as HTTP client in Zeek conn/http logs |
+| Victim IP | `10[.]1[.]17[.]215` | Observed as HTTP client in Zeek conn/http logs |
 | Hostname | `DESKTOP-L8C5GSJ` | Reported in capture metadata |
 | Domain | `authenticatoor[.]org` | Suspicious domain observed in HTTP requests |
 | Domain | `google-authenticator[.]burleson-appliance[.]net` | Ancillary domain observed in session |
