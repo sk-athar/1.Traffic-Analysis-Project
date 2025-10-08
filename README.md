@@ -19,11 +19,12 @@ Artifacts confirm staged payload delivery and exfiltration via encoded HTTP sess
 2. [Key Artifacts & IOCs](#key-artifacts--iocs)  
 3. [Event Timeline](#event-timeline)  
 4. [Network Analysis](#network-analysis)  
-5. [File Analysis](#file-analysis)  
-6. [MITRE ATT&CK Mapping](#mitre-attck-mapping)  
-7. [ELK Dashboards](#elk-dashboards)  
-8. [Reproduction Steps](#reproduction-steps)  
-9. [License & Attribution](#license--attribution)
+5. [File Analysis](#file-analysis)
+6. [Behavioral Analysis](#behavioral-analysis)
+7. [MITRE ATT&CK Mapping](#mitre-attck-mapping)  
+8. [ELK Dashboards](#elk-dashboards)  
+9. [Reproduction Steps](#reproduction-steps)  
+10. [License & Attribution](#license--attribution)
 
 ---
 
