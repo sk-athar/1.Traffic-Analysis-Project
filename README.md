@@ -34,7 +34,7 @@ Artifacts confirm staged payload delivery and exfiltration via encoded HTTP sess
 
 | Field | Details |
 |-------|----------|
-| Victim Host | 10[.]1[.]17[.]215 |
+| Victim IP | 10[.]1[.]17[.]215 |
 | Victim Hostname | DESKTOP-L8C5GSJ |
 | Domain | bluemoontuesday.com |
 | Controller | WIN-GSH54QLW48D (10[.]1[.]17[.]2) |
