@@ -137,8 +137,7 @@ Artifacts confirm staged payload delivery and exfiltration via encoded HTTP sess
 ## ELK Dashboards
 
 A custom ELK pipeline was created to ingest JSON logs for IOC visualization.  
-You can find the Kibana NDJSON dashboard file here:  
-[Malware_Analysis_IOC.ndjson](https://github.com/sk-athar/Malware-Analysis-Project/blob/main/ELK/Malware_Analysis_IOC.ndjson)
+You can find the Kibana NDJSON dashboard file here: [Malware_Analysis_IOC.ndjson](https://github.com/sk-athar/Malware-Analysis-Project/blob/main/ELK/Malware_Analysis_IOC.ndjson)
 
 ---
 
@@ -171,8 +170,7 @@ md5sum <filename>
 
 ### Zeek IOC Detection
 
-IOC detection rule:  
-[ioc-detection.zeek](https://github.com/sk-athar/Malware-Analysis-Project/blob/main/zeek_rules/ioc-detection.zeek)
+IOC detection rule: [ioc-detection.zeek](https://github.com/sk-athar/Malware-Analysis-Project/blob/main/zeek_rules/ioc-detection.zeek)
 
 ```bash
 # Generate Zeek logs and alert file
