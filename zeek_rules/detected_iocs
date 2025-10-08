@@ -1,0 +1,162 @@
+This shows all the alert rules being triggered
+
+  
+  === ALERT: IOC_Detection::Malicious_IP_Detected ===
+Time: 1737575156.827936
+Message: HTTP request to known malicious IP 5.252.153.241
+Details: URL: /api/file/get-file/264872
+Source: 10.1.17.215 -> Dest: 5.252.153.241
+
+
+=== ALERT: IOC_Detection::Malicious_URL_Detected ===
+Time: 1737575156.827936
+Message: Suspicious URL pattern detected: /api/file/get-file/264872
+Details: Source: 10.1.17.215 -> Destination: 5.252.153.241
+Source: 10.1.17.215 -> Dest: 5.252.153.241
+
+
+=== ALERT: IOC_Detection::Malicious_IP_Detected ===
+Time: 1737575158.675869
+Message: HTTP request to known malicious IP 5.252.153.241
+Details: URL: /api/file/get-file/29842.ps1
+Source: 10.1.17.215 -> Dest: 5.252.153.241
+
+
+=== ALERT: IOC_Detection::Malicious_URL_Detected ===
+Time: 1737575158.675869
+Message: Suspicious URL pattern detected: /api/file/get-file/29842.ps1
+Details: Source: 10.1.17.215 -> Destination: 5.252.153.241
+Source: 10.1.17.215 -> Dest: 5.252.153.241
+
+
+=== ALERT: IOC_Detection::PowerShell_Download_Detected ===
+Time: 1737575158.675869
+Message: PowerShell script download: /api/file/get-file/29842.ps1
+Details: From 10.1.17.215 to 5.252.153.241 - High risk!
+Source: 10.1.17.215 -> Dest: 5.252.153.241
+
+
+=== ALERT: IOC_Detection::Malicious_IP_Detected ===
+Time: 1737575158.896228
+Message: HTTP request to known malicious IP 5.252.153.241
+Details: URL: /1517096937
+Source: 10.1.17.215 -> Dest: 5.252.153.241
+
+
+=== ALERT: IOC_Detection::Malicious_URL_Detected ===
+Time: 1737575158.896228
+Message: Suspicious URL pattern detected: /1517096937
+Details: Source: 10.1.17.215 -> Destination: 5.252.153.241
+Source: 10.1.17.215 -> Dest: 5.252.153.241
+
+
+=== ALERT: IOC_Detection::Numeric_Beacon_Detected ===
+Time: 1737575158.896228
+Message: Numeric path beacon detected: /1517096937
+Details: Possible C2 communication from 10.1.17.215 to 5.252.153.241
+Source: 10.1.17.215 -> Dest: 5.252.153.241
+
+
+=== ALERT: IOC_Detection::Malicious_IP_Detected ===
+Time: 1737575221.528276
+Message: HTTP request to known malicious IP 5.252.153.241
+Details: URL: /api/file/get-file/TeamViewer
+Source: 10.1.17.215 -> Dest: 5.252.153.241
+
+
+=== ALERT: IOC_Detection::Malicious_URL_Detected ===
+Time: 1737575221.528276
+Message: Suspicious URL pattern detected: /api/file/get-file/TeamViewer
+Details: Source: 10.1.17.215 -> Destination: 5.252.153.241
+Source: 10.1.17.215 -> Dest: 5.252.153.241
+
+
+=== ALERT: IOC_Detection::Malicious_IP_Detected ===
+Time: 1737575224.988901
+Message: HTTP request to known malicious IP 5.252.153.241
+Details: URL: /api/file/get-file/Teamviewer_Resource_fr
+Source: 10.1.17.215 -> Dest: 5.252.153.241
+
+
+=== ALERT: IOC_Detection::Malicious_URL_Detected ===
+Time: 1737575224.988901
+Message: Suspicious URL pattern detected: /api/file/get-file/Teamviewer_Resource_fr
+Details: Source: 10.1.17.215 -> Destination: 5.252.153.241
+Source: 10.1.17.215 -> Dest: 5.252.153.241
+
+
+=== ALERT: IOC_Detection::Malicious_IP_Detected ===
+Time: 1737575225.357954
+Message: HTTP request to known malicious IP 5.252.153.241
+Details: URL: /api/file/get-file/TV
+Source: 10.1.17.215 -> Dest: 5.252.153.241
+
+
+=== ALERT: IOC_Detection::Malicious_URL_Detected ===
+Time: 1737575225.357954
+Message: Suspicious URL pattern detected: /api/file/get-file/TV
+Details: Source: 10.1.17.215 -> Destination: 5.252.153.241
+Source: 10.1.17.215 -> Dest: 5.252.153.241
+
+
+=== ALERT: IOC_Detection::Malicious_IP_Detected ===
+Time: 1737575225.514713
+Message: HTTP request to known malicious IP 5.252.153.241
+Details: URL: /api/file/get-file/pas.ps1
+Source: 10.1.17.215 -> Dest: 5.252.153.241
+
+
+=== ALERT: IOC_Detection::Malicious_URL_Detected ===
+Time: 1737575225.514713
+Message: Suspicious URL pattern detected: /api/file/get-file/pas.ps1
+Details: Source: 10.1.17.215 -> Destination: 5.252.153.241
+Source: 10.1.17.215 -> Dest: 5.252.153.241
+
+
+=== ALERT: IOC_Detection::PowerShell_Download_Detected ===
+Time: 1737575225.514713
+Message: PowerShell script download: /api/file/get-file/pas.ps1
+Details: From 10.1.17.215 to 5.252.153.241 - High risk!
+Source: 10.1.17.215 -> Dest: 5.252.153.241
+
+
+=== ALERT: IOC_Detection::Malicious_IP_Detected ===
+Time: 1737575225.740471
+Message: HTTP request to known malicious IP 5.252.153.241
+Details: URL: /1517096937?k=message%20=%20startup%20shortcut%20created;%20%20status%20=%20success;
+Source: 10.1.17.215 -> Dest: 5.252.153.241
+
+
+=== ALERT: IOC_Detection::Malicious_URL_Detected ===
+Time: 1737575225.740471
+Message: Suspicious URL pattern detected: /1517096937?k=message%20=%20startup%20shortcut%20created;%20%20status%20=%20success;
+Details: Source: 10.1.17.215 -> Destination: 5.252.153.241
+Source: 10.1.17.215 -> Dest: 5.252.153.241
+
+
+=== ALERT: IOC_Detection::Numeric_Beacon_Detected ===
+Time: 1737575225.740471
+Message: Numeric path beacon detected: /1517096937?k=message%20=%20startup%20shortcut%20created;%20%20status%20=%20success;
+Details: Possible C2 communication from 10.1.17.215 to 5.252.153.241
+Source: 10.1.17.215 -> Dest: 5.252.153.241
+
+
+=== ALERT: IOC_Detection::Malicious_IP_Detected ===
+Time: 1737575978.419696
+Message: HTTP request to known malicious IP 5.252.153.241
+Details: URL: /1517096937?k=script:%20RunRH,%20status:%20OK,%20message:%20PS%20process%20started
+Source: 10.1.17.215 -> Dest: 5.252.153.241
+
+
+=== ALERT: IOC_Detection::Malicious_URL_Detected ===
+Time: 1737575978.419696
+Message: Suspicious URL pattern detected: /1517096937?k=script:%20RunRH,%20status:%20OK,%20message:%20PS%20process%20started
+Details: Source: 10.1.17.215 -> Destination: 5.252.153.241
+Source: 10.1.17.215 -> Dest: 5.252.153.241
+
+
+=== ALERT: IOC_Detection::Numeric_Beacon_Detected ===
+Time: 1737575978.419696
+Message: Numeric path beacon detected: /1517096937?k=script:%20RunRH,%20status:%20OK,%20message:%20PS%20process%20started
+Details: Possible C2 communication from 10.1.17.215 to 5.252.153.241
+Source: 10.1.17.215 -> Dest: 5.252.153.241
