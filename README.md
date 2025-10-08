@@ -173,7 +173,7 @@ md5sum <filename>
 
 ---
 
-Zeek IOC Detection ioc-detection.zeek can be found in zeek-rules
+Zeek IOC Detection ioc-detection.zeek can be found in zeek-rules [Here](https://github.com/sk-athar/Malware-Analysis-Project/blob/main/zeek_rules/ioc-detection.zeek)
 run this with the pcap file 
 ```bash
 #to generate logs and notice.log 
